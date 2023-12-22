@@ -18,7 +18,7 @@ class Dresseur extends Equipe {
     public function attraperPokemon($pokemon) {
         // Vérifiez si le dresseur peut attraper plus de Pokémon
         if (count($this->pokemons) < $this->nombrePokemonMax) {
-            // Ajoutez le Pokémon au tableau
+            // Ajoutez le pokemon au tableau
             $this->pokemons[] = $pokemon;
             echo "{$this->nomdresseur} a attrapé un nouveau Pokémon : {$pokemon->getNom()}\n";
         } else {

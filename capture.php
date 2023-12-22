@@ -1,36 +1,40 @@
 <?php
 
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Logique de capture du Pokémon
-    if (isset($_POST['capturerPokemon'])) {
+    // echo "<p> méthode POST</p>";
+    var_dump($_POST);
+
+    if (isset($_POST['capturer'])) {
         $pokemonIdCapture = filter_input(INPUT_POST, 'pokemonId', FILTER_VALIDATE_INT);
 
-        // Vérifiez si le Pokémon capturé existe dans la liste des Pokémon générés
+        // vérifier si le pokemon existe dans la liste généré
         if ($pokemonIdCapture !== false && isset($_SESSION['pokemonsGeneres'][$pokemonIdCapture])) {
-            // Récupérez les informations du Pokémon capturé
+            // recuperer infos pokemon capturé
             $pokemonCapture = $_SESSION['pokemonsGeneres'][$pokemonIdCapture];
 
-            // Effectuez la tentative de capture en fonction de la difficulté
+            // tentative en fonction de la difficulte de capture
             $tentativeCapture = mt_rand(1, 100);
 
             switch ($pokemonCapture['DifficulteCapture']) {
                 case 'Facile':
-                    $tauxCapture = 70; // ajustez selon vos besoins
+                    $tauxCapture = 70;
                     break;
                 case 'Normal':
-                    $tauxCapture = 50; // ajustez selon vos besoins
+                    $tauxCapture = 50;
                     break;
                 case 'Difficile':
-                    $tauxCapture = 30; // ajustez selon vos besoins
+                    $tauxCapture = 30;
                     break;
                 default:
-                    $tauxCapture = 50; // taux par défaut si la difficulté n'est pas définie
+                    $tauxCapture = 50;
                     break;
             }
 
             if ($tentativeCapture <= $tauxCapture) {
-                // Le Pokémon a été capturé
-                // Ajoutez le Pokémon à l'équipe du dresseur
+                // pokemon capturé
+                // Ajoutez le Pokémon à l'équipe sacha
                 $sacha->attraperPokemon(new Pokemon(
                     $pokemonCapture['numero'],
                     $pokemonCapture['nom'],
@@ -41,17 +45,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $pokemonCapture['imagePath']
                 ));
 
-                // Retirez le Pokémon de la liste des Pokémon générés (si vous le souhaitez)
+                // retirez le pokemon de la liste des pokemon generé
                 unset($_SESSION['pokemonsGeneres'][$pokemonIdCapture]);
 
-                // Vous pouvez également rediriger l'utilisateur vers une page de confirmation ou autre
+                // redirige l'utilisateur vers une page 
                 header('Location: index.php' . $_SERVER['REQUEST_URI']);
                 exit;
             } else {
-                // Le Pokémon a échappé à la capture
-                echo 'Le Pokémon a échappé à la capture.';
 
-                // Vous pouvez également rediriger l'utilisateur vers une page d'échec de capture
+                echo 'Le Pokémon a échappé à la capture.';
                 // header('Location: echec_capture.php');
                 // exit;
             }

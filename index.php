@@ -17,6 +17,7 @@
     if (!isset($_SESSION['pokemonsGeneres'])) {
         $_SESSION['pokemonsGeneres'] = [];
     }
+    $pokemonIdCapture = 0;
     ?>
 </head>
 <body>
@@ -63,10 +64,11 @@
         <?php
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // Générer un Pokémon aléatoire
+                echo "<p> méthode POST</p>";
+                // générer un pokemon aléatoire parmis une fiche
                 $pokemonAleatoire = new Pokemon(3, "Psykokwak", ["Normal"], "sexe", "Ocean", "Un pokemon loufoque", "images/54.png");
             
-                // Ajoutez les caractéristiques du Pokémon au tableau de session
+                // ajouter les caractéristique du pokemon a SESSION
                 $_SESSION['pokemonsGeneres'][] = [
                     'numero' => $pokemonAleatoire->getNumero(),
                     'nom' => $pokemonAleatoire->getNom(),
@@ -106,9 +108,9 @@
                     echo "capture : {$pokemon['capture']}<br>";
             
                     // Formulaire de capture
-                    echo '<form method="post">';
-                    echo '<input type="hidden" name="pokemonId" value="' . $pokemon['numero'] . '">';
-                    echo '<input type="submit" name="capturerPokemon" value="Capturer">';
+                    echo '<form method="post" action="capture.php">';
+                        echo '<input type="hidden" name="pokemonId" value="' . $pokemon['numero'] . '">';
+                        echo '<input type="submit" name="capturerPokemon" value="capturer">';
                     echo '</form>';
             
                     echo '</div>';
@@ -130,7 +132,8 @@
 
 <?php
 
-
+var_dump($_POST);
+var_dump($pokemonIdCapture);
 
 
 $equipe = new Equipe("Team Rocket", "Ténèbres");
