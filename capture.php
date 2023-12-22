@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // echo "<p> méthode POST</p>";
     var_dump($_POST);
 
-    if (isset($_POST['capturer'])) {
+    if (isset($_POST['capturerPokemon'])) {
         $pokemonIdCapture = filter_input(INPUT_POST, 'pokemonId', FILTER_VALIDATE_INT);
 
         // vérifier si le pokemon existe dans la liste généré
@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // tentative en fonction de la difficulte de capture
             $tentativeCapture = mt_rand(1, 100);
+            
 
             switch ($pokemonCapture['DifficulteCapture']) {
                 case 'Facile':
@@ -59,5 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
+    var_dump($pokemonCapture);
+    var_dump($sacha);
 }
 

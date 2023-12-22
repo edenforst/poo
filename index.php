@@ -25,7 +25,7 @@
 <h1>Générateur Pokémon</h1>
 
 <form method="post">
-    <input type="submit" value="Générer un pokemon">
+    <input type="submit" name="genererPokemon" value="Générer un pokemon" >
 </form>
 
 <form method="post" action="vider_session.php">
@@ -110,7 +110,7 @@
                     // Formulaire de capture
                     echo '<form method="post" action="capture.php">';
                         echo '<input type="hidden" name="pokemonId" value="' . $pokemon['numero'] . '">';
-                        echo '<input type="submit" name="capturerPokemon" value="capturer">';
+                        echo '<input type="submit" name="capturerPokemon" value="Capturer">';
                     echo '</form>';
             
                     echo '</div>';
