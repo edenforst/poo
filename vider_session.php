@@ -1,7 +1,12 @@
 <?php
-// Démarrer la session
-session_start();
 
+/**
+ * Script gérant la suppression de toutes les données de session.
+ */
+
+/**
+ * Vérifie si la demande de suppression des données de session est reçue via la méthode POST.
+ */
 if (isset($_POST['viderSession'])) {
     // Détruire toutes les données de session
     session_destroy();
@@ -13,7 +18,7 @@ if (isset($_POST['viderSession'])) {
     setcookie(session_name(), '', time() - 3600, '/');
 
     // Rediriger l'utilisateur vers la page d'origine ou une autre page
-    header('Location: index.php'); // Remplacez "page_origine.php" par le chemin de votre choix
+    header('Location: index.php'); // Redirige vers la page principale
     exit;
 }
 ?>

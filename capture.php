@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
-    var_dump($pokemonCapture);
-    var_dump($sacha);
+    // var_dump($pokemonCapture);
+    // var_dump($sacha);
 }
 
